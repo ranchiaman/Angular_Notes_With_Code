@@ -1,0 +1,31 @@
+Parent
+=======================
+TS - file
+
+  abc!: string ;
+   GetChildData(datam:any){
+    alert("hello")
+    this.abc = datam;
+  }
+
+HTML - file
+========================
+<app-son (mydata) ="GetChildData($event)"></app-son>
+<p>{{abc}}</p>
+
+CHILD
+====================
+TS - file
+=====================
+  dataChild: string = "Data from Child"
+  @Output() mydata: EventEmitter<string> = new EventEmitter()
+
+ sendValues(){
+    this.mydata.emit(this.dataChild);  
+  }
+
+========================================
+HTML - file
+========================================
+{{data}}
+<button (click)="sendValues()"> Send Data </button>  

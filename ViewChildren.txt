@@ -1,0 +1,20 @@
+Take a new component -- view-Children
+======================================
+viewChildren component ts file- 
+
+======================================
+  constructor(private ele: ElementRef) { }
+
+  ngAfterViewInit(): void {
+    this.mytempref.last.nativeElement.style.backgroundColor ="pink";
+  }
+
+  @ViewChildren('tempref') mytempref: any;
+============================================
+viewChildren component html file- 
+
+======================================
+<p #tempref>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam eius minima praesentium a modi consequatur.</p>
+<p #tempref>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam eius minima praesentium a modi consequatur.</p>
+<p #tempref>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam eius minima praesentium a modi consequatur.</p>
+<p #tempref>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam eius minima praesentium a modi consequatur.</p>

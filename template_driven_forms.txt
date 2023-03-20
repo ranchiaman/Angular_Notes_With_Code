@@ -1,0 +1,25 @@
+Tempalte Driven Form
+=========================
+HTML FILE
+=========================
+Need to import Forms Module in Module fle
+==========================================
+<form (ngSubmit)="formSubmit(myform)" #myform="ngForm">
+    <span>Name</span>
+    <input type="text" name="name" ngModel><br><br>
+
+    <span>Emial</span>
+    <input type="email" name="email" ngModel><br><br>
+
+    <span>City</span>
+    <input type="text" name="city" ngModel><br><br>
+
+    <button type="submit">Submit</button>
+</form> 
+===================================
+TS FILE
+======================================
+  formSubmit(data:any){
+    console.log("data form", data.value)
+  }
+  

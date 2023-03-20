@@ -1,0 +1,23 @@
+1. Create a conponent named Projection. Add below code in html flie of
+Projection component. 
+
+<ng-content select=".one"></ng-content>
+<p>Lorem ipsum dolor sit amet consectetur,</p>
+<p> adipisicing elit. Reiciendis modi, quas minima perferendis </p>
+<p> dolor iste veniam voluptatum, dolorum corrupti natus vel </p>
+<p> doloribus facere temporibus. Vitae nulla quisquam excepturi </p>
+<ng-content select=".two"></ng-content>
+
+
+2. Go to parent component App component and add the below code in html file. 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <app-ng-content ><h1 class="one">Hello</h1></app-ng-content>
+        </div>
+        <div class="col-lg-6">
+            <app-ng-content><button class="two btn btn-primary">Hello2</button></app-ng-content>
+        </div>
+    </div>
+</div>
+

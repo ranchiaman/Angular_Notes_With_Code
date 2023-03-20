@@ -1,0 +1,34 @@
+	Reactive Forms
+====================
+1. Import ReactiveFormsModule in the Module file. 
+2. Need to import FormControl and FormGroup
+
+====================
+
+1. Add the below code in html file
+===================================
+
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <label>Name</label>
+    <input type="text" formControlName="name">
+
+    <label>City</label>
+    <input type="text" formControlName="city">
+
+    <button type="submit">Submit</button>
+</form>
+<router-outlet></router-outlet>
+=========================================
+Add below code in ts file
+=============================================
+  loginForm = new FormGroup({
+    name: new FormControl(), 
+    city: new FormControl()
+  })
+
+  onSubmit() {
+    console.log(this.loginForm.value)
+  }
+
+
+

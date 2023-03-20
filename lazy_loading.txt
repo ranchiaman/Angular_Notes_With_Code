@@ -1,0 +1,26 @@
+1. Create an Admin Module with routing and two components inside it named
+  a> comp-one 
+  b> comp-two
+
+2. Add below code in admin module routing file - admin-routing.module.ts
+
+const routes: Routes = [
+  {path: 'comp-one', component: CompOneComponent},
+  {path: 'comp-two', component: CompTwoComponent},
+];
+
+3. Add below code in app-routing module file. app-routing.module.ts
+
+const routes: Routes = [
+  {path:"admin", loadChildren:()=>import('./admin/admin.module')
+   .then(m=>m.AdminModule)}
+];
+
+
+4. Add below code in app.componennt.html file
+
+<a routerLink="admin/comp-one">comp one</a><br>
+<a routerLink="admin/comp-two">comp two</a>
+
+<router-outlet></router-outlet>
+

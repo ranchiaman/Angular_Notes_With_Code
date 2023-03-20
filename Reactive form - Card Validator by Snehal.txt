@@ -1,0 +1,75 @@
+Reactive form - Card Validator by Snehal
+=================================================
+HTML
+=================================================
+<h1>Payment Validation</h1>
+<form style="width:50% ; margin: 0 auto;" [formGroup]="myForm">
+  <div class="form-group">
+    <label>Name on card</label>
+    <input type="text" class="form-control" placeholder="Enter name(John Ray)" formControlName="name">
+    <span class="text-danger"  *ngIf="name && name.invalid && name.touched">Enter valid name</span>
+  </div>
+  <br>
+  <div class="form-group">
+    <label>Card number</label>
+    <input type="text" class="form-control" placeholder="card number(xxxxxxxxxxxxxxxx)" formControlName="number" maxlength="16">
+    <span class="text-danger"  *ngIf="number && number.invalid && number.touched">Enter valid card number</span>
+  </div>
+  <br>
+  <div class="parent">
+    <div class="form-group">
+      <label>Date of Expiration</label>
+      <div class="d-flex">
+        <input type="text" class="form-control" placeholder="month(05 for May)" formControlName="month" maxlength="2">
+        <span class="text-danger"  *ngIf="month && month.invalid && month.touched">Enter valid month</span>
+        <input type="text" class="form-control" placeholder="year(2022)" formControlName="year" maxlength="4">
+        <span class="text-danger"  *ngIf="year && year.invalid && year.touched">Enter valid year</span>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label>CVV/CVC</label>
+      <input type="password" class="form-control" placeholder="CVV/CVC(xxx)" formControlName="cvv" maxlength="3">
+      <span class="text-danger" *ngIf="cvv && cvv.invalid && cvv.touched">Enter valid CVV</span>
+    </div>
+    <br>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<router-outlet></router-outlet>
+
+=====================================================================
+TS File
+=====================================================================
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+  title = 'formvalidationR';
+  myForm = new FormGroup({
+    name: new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z][a-zA-z]+')]),
+    number: new FormControl('',[Validators.required,Validators.pattern('[0-9][0-9]+'), Validators.minLength(16), Validators.maxLength(16)]),
+    month: new FormControl('',[Validators.required,Validators.minLength(2), Validators.pattern('[0-1][0-9]+'),Validators.minLength(2), Validators.min(1), Validators.max(12)]),
+    year: new FormControl('',[Validators.required,Validators.maxLength(4), Validators.minLength(4), Validators.min(2022), Validators.pattern('[0-9][0-9]+'),Validators.max(2030)]),
+    cvv: new FormControl('',[Validators.required, Validators.pattern('[0-9][0-9]+'),Validators.maxLength(3), Validators.minLength(3)]),
+  });
+  get name(){
+    return this.myForm.get('name');
+  }
+  get number(){
+    return this.myForm.get('number')
+  }
+  get month(){
+    return this.myForm.get('month')
+  }
+  get year(){
+    return this.myForm.get('year')
+  }
+  get cvv(){
+    return this.myForm.get('cvv')
+  }
+}

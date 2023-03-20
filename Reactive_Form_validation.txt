@@ -1,0 +1,70 @@
+==================================================
+REACTIVE FORM HTML
+==================================================
+import ReactiveFormsModule from '@angular/forms'; at app.module.ts file
+==================================================
+<h2>Reactive Form!</h2>
+
+<form (ngSubmit)="submitForm()" [formGroup]="myForm"> 
+    <label>Name</label>
+    <input type="text" placeholder="enter name" formControlName="name">
+    <br>
+    <span style="color: red" *ngIf="name && name.invalid && name.touched">This field is mandatory</span>
+    <br>
+    <label>City</label>
+    <input type="text" placeholder="enter city" formControlName="city">
+    <br>
+    <span style="color: red" *ngIf="city && city.invalid && city.touched">This field is mandatory</span>
+    <br>
+
+    <label>Card Number</label>
+    <input type="text" placeholder="enter number" formControlName="number">
+    <br>
+    <span style="color: red" *ngIf="number && number.invalid && number.touched">This field is mandatory</span>
+    <br>
+
+    <button [disabled]="myForm.invalid" type="submit">submit</button>
+</form>
+
+==================================================
+REACTIVE FORM TS FILE
+==================================================
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-reactive-form',
+  templateUrl: './reactive-form.component.html',
+  styleUrls: ['./reactive-form.component.css']
+})
+export class ReactiveFormComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]+")]), 
+    city: new FormControl('', [Validators.required]) ,
+    number: new FormControl('', [Validators.required, Validators.minLength(10),  Validators.maxLength(10)]) 
+  })
+
+  submitForm(){
+    console.log("forms value", this.myForm.value)
+  }
+
+  get name(){
+    return this.myForm.get('name');
+  }
+
+  get city(){
+    return this.myForm.get('city');
+  }
+
+  get number(){
+    return this.myForm.get('number');
+  }
+}
+
+==================================================

@@ -1,0 +1,33 @@
+@Input Decorator (Parent to Child data transfer)
+==================================================
+
+Child Component - TS
+==================================================
+constructor() { }
+
+  @Input() message: string | undefined;
+
+  ngOnInit(): void {
+  }
+==================================================
+Child Component - HTML
+==================================================
+<div>
+    <p>child works!</p>
+    <p>{{ message }}</p>
+</div>
+==================================================
+
+Parent Component HTML file
+================================================
+<app-child [message]="data" ></app-child>
+
+==================================================
+
+Parent Component TS file
+================================================
+  constructor() { }
+  data: string = "Data from Parent Component !";
+  
+  ngOnInit(): void {
+  }

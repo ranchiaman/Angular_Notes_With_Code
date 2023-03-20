@@ -1,0 +1,26 @@
+1. Create Directive - (dirlight.directive.ts)
+------------------------------------------------
+app.component.html file 
+========================
+<h1 appDirlight>Aman Kumar</h1>
+
+dirlight.directive.ts file
+======================================================================
+import { Directive, HostBinding, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appDirlight]'
+})
+export class DirlightDirective {
+
+  constructor() { }
+
+  @HostBinding('style.backgroundColor') myColor = "pink" 
+  @HostListener('mouseenter') myEvent() {
+    this.myColor = "yellow"
+  } 
+}
+
+
+=====================================================================
+

@@ -1,0 +1,29 @@
+step1- Create Two Components - viewChild and viewParent
+
+step2- ViewChild - html file
+==============================
+<h2 #temp>Hello</h2>
+
+==============================
+
+step-3 - ViewChild - ts file
+==============================
+ constructor(private ele: ElementRef) { }
+  ngAfterViewInit(): void {
+    this.mytemp.nativeElement.style.color ="red";
+  }
+
+  ngOnInit(): void {
+  }
+  @ViewChild('temp') mytemp: any;
+
+===================================================
+
+step-4: viewParent Component
+===================================================
+html - file
+===================================================
+<app-view-child></app-view-child>
+
+
+====================================================
